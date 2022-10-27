@@ -2,24 +2,8 @@
 #define CTEF_PROFILE_H
 
 
-/** Private ******************************************************************/
-
-
-typedef struct CtefProbe CtefProbe;
-
-CtefProbe* __ctef_probe_new(const char* name);
-void __ctef_probe_delete(CtefProbe* probe);
-
-void __ctef_profile_begin(const char* filename);
-void __ctef_profile_end();
-
-
-/** Macros *******************************************************************/
-
-
 #define CTEF_PROFILE 1
-#if CTEF_PROFILE 1
-
+#ifdef CTEF_PROFILE
     /**
      * @brief Start a new profiling session, writing the json data into the
      *        file specified by filename
@@ -36,6 +20,26 @@ void __ctef_profile_end();
 
     #define CTEF_PROFILE_BEGIN_FUNCTION()
     #define CTEF_PROFILE_END_FUNCTION()
+
+    
+    /** Private **************************************************************/
+
+
+    typedef struct CtefProbe CtefProbe;
+
+    // Don't use. Use the macros CTEF_PROFILE_BEGIN_SECTION() or
+    // CTEF_PROFILE_BEGIN_FUNCTION() instead
+    CtefProbe* ctef_probe_begin(const char* name);
+
+    // Don't use. Use the macros CTEF_PROFILE_END_SECTION() or
+    // CTEF_PROFILE_END_FUNCTION() instead
+    void ctef_probe_end(CtefProbe* probe);
+
+    // Don't use. Use the macro CTEF_PROFILE_BEGIN() instead
+    void ctef_profile_begin(const char* filename);
+    
+    // Don't use. Use the macro CTEF_PROFILE_END() instead
+    void ctef_profile_end();
 
 #else // CTEF_PROFILE
 
