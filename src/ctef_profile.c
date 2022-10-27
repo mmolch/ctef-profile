@@ -178,7 +178,7 @@ ctef_profiler_write_probe(CtefProfiler* profiler, const CtefProfilerProbe* probe
     snprintf(buffer, json_length+1, json_template, duration,
                                                    probe->name,
                                                    probe->thread_id,
-                                                   probe->time_stop);
+                                                   probe->time_start);
 
     pthread_mutex_lock(&profiler->lock);
     fwrite(buffer, json_length, 1, profiler->fd);
