@@ -18,12 +18,12 @@ void ctef_profiler_write_probe(CtefProfiler* profiler, const CtefProfilerProbe* 
 **************************************************************************************************/
 
 
-static long
+static double
 get_time_in_microseconds()
 {
     struct timespec now;
     clock_gettime(CLOCK_MONOTONIC, &now);
-    return 1e6 * now.tv_sec + now.tv_nsec * 1e-3;
+    return 1e6 * (double)now.tv_sec + (double)now.tv_nsec * 1e-3;
 }
 
 
@@ -35,8 +35,8 @@ get_time_in_microseconds()
 struct CtefProfilerProbe
 {
     char* name;
-    long time_start;
-    long time_stop;
+    double time_start;
+    double time_stop;
     long thread_id;
 };
 
@@ -157,16 +157,16 @@ ctef_profiler_delete(CtefProfiler* profiler)
 void
 ctef_profiler_write_probe(CtefProfiler* profiler, const CtefProfilerProbe* probe)
 {
-    long duration = probe->time_stop - probe->time_start;
+    double duration = probe->time_stop - probe->time_start;
 
     const char json_template[] = ",{"
                                  "\"cat\":\"function\","
-                                 "\"dur\":%ld,"
+                                 "\"dur\":%.0f,"
                                  "\"name\":\"%s\","
                                  "\"ph\":\"X\","
                                  "\"pid\":0,"
                                  "\"tid\":%lu,"
-                                 "\"ts\":%ld"
+                                 "\"ts\":%.0f"
                                  "}";
 
     int json_length = snprintf(NULL, 0, json_template, duration,
