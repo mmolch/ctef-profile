@@ -2,6 +2,8 @@
 
 A simple one-file (well, with header two-files) library written in C99 that lets you profile your C / C++ application visually by writing the trace into a json file in the trace event format used by Chrome / Chromium. This file can then be opened with Chrome's built-in tracing application (url: chrome://tracing)
 
+![alt text](profile.png)
+
 
 ## Audience
 This library is intended for small-scale projects mainly written in C. While it obviously also works in C++, there are probably better alternatives for pure C++ (primarily because you don't have to manually mark the end of a function / scope / program).

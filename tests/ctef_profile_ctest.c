@@ -10,7 +10,7 @@ void *thread_func(void *arg)
 {
     CTEF_PROFILE_BEGIN_FUNCTION();
 
-    sleep(1);
+    usleep(500000);
 
     CTEF_PROFILE_END_FUNCTION();
     return NULL;
