@@ -47,6 +47,8 @@ ctef_profiler_probe_new(const char* name)
     CtefProfilerProbe* probe = malloc(sizeof(CtefProfilerProbe));
     assert(probe != NULL);
 
+    memset(probe, 0, sizeof(CtefProfilerProbe));
+
     {
         int name_length = strlen(name);
         probe->name = malloc(name_length+1);
@@ -125,6 +127,9 @@ static CtefProfiler*
 ctef_profiler_new(const char* filename)
 {
     CtefProfiler* profiler = malloc(sizeof(CtefProfiler));
+    assert(profiler != NULL);
+
+    memset(profiler, 0, sizeof(CtefProfiler));
 
     profiler->fd = fopen(filename, "w");
     assert(profiler->fd != NULL);
