@@ -31,35 +31,35 @@
      * @brief Start a new profiling session, writing the json data into the
      *        file specified by filename
     */
-    #define CTEF_PROFILE_BEGIN(filename) ctef_profile_begin(filename)
+    #define CTEF_PROFILE_BEGIN(filename) ctef_profile_begin(filename);
 
     /**
      * @brief End the profiling session
     */
-    #define CTEF_PROFILE_END() ctef_profile_end()
+    #define CTEF_PROFILE_END() ctef_profile_end();
 
     /**
      * @brief Begin a profiling section. Use CTEF_PROFILE_END_SECTION()
      *        to end the section
     */
-    #define CTEF_PROFILE_BEGIN_SECTION(variable, name) CtefProfilerProbe* variable = ctef_profiler_probe_begin(name)
+    #define CTEF_PROFILE_BEGIN_SECTION(variable, name) CtefProfilerProbe* variable = ctef_profiler_probe_begin(name);
 
     /**
      * @brief End a profiling section. Provide the variable you
      *        gave to CTEF_PROFILE_BEGIN_SECTION()
     */
-    #define CTEF_PROFILE_END_SECTION(variable) ctef_profiler_probe_end(variable)
+    #define CTEF_PROFILE_END_SECTION(variable) ctef_profiler_probe_end(variable);
 
     /**
      * @brief Begin a profiling section with the function name as name
      *        and an automatically generated variable name
     */
-    #define CTEF_PROFILE_BEGIN_FUNCTION() CtefProfilerProbe* ctef##CTEF_FUNC_SIG = ctef_profiler_probe_begin(CTEF_FUNC_SIG)
+    #define CTEF_PROFILE_BEGIN_FUNCTION() CtefProfilerProbe* ctef##CTEF_FUNC_SIG = ctef_profiler_probe_begin(CTEF_FUNC_SIG);
 
     /**
      * @brief Ends profiling section started with CTEF_PROFILE_BEGIN_FUNCTION()
     */
-    #define CTEF_PROFILE_END_FUNCTION() ctef_profiler_probe_end(ctef##CTEF_FUNC_SIG)
+    #define CTEF_PROFILE_END_FUNCTION() ctef_profiler_probe_end(ctef##CTEF_FUNC_SIG);
 
     
 #else // CTEF_PROFILE
